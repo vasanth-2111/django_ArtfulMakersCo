@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 from .models import Artisan, Customer, Product
 from django import forms
 
-
-class AddressForm(forms.Form):
-    address = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), label='Delivery Address')
-
 class ArtisanUserForm(forms.ModelForm):
     class Meta:
         model = User
