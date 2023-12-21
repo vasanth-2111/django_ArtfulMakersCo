@@ -4,7 +4,7 @@
 {% block content %}
     <body>
         <div class="container mt-4">
-            <h2>Admin Dashboard</h2>
+            <h2>Manage Orders</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -29,7 +29,7 @@
                             <td>${{ order.price }}</td>
                             <td>{{ order.get_status_display }}</td>
                             <td>
-                               {% if  not order.get_status_display == "Cancelled" %}
+                               {% if order.get_status_display == "Pending" %}
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ order.id }}">
                                     Update Status
                                 </button>
