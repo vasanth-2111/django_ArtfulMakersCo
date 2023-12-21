@@ -1,0 +1,90 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+  <style>
+
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .edit-container {
+      margin-top: 50px;
+    }
+
+    .edit-card {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .edit-header {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .form-group button {
+      background-color: #454679;
+      color: #fff;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+
+  <div class="container edit-container">
+    <div class="edit-card">
+      <h1 class="edit-header">Edit Product:<br><br> {{ product.name }}</h1>
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="form-group">
+          <label for="id_name">Product Name:</label>
+          <input type="text" name="name" maxlength="255" required id="id_name" value="{{ product.name }}">
+        </div>
+        <div class="form-group">
+          <label for="id_description">Description:</label>
+          <textarea name="description" maxlength="60" cols="46" rows="4" required id="id_description">{{ product.description }}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="id_price">Price:</label>
+          <input type="number" name="price" step="0.01" required id="id_price" value="{{ product.price }}">
+        </div>
+        <div class="form-group">
+          <label for="id_image">Image:</label>
+          <input type="file" name="image" accept="image/*" id="id_image">
+        </div>
+        <div class="form-group">
+          <button type="submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

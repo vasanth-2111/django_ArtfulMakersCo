@@ -1,0 +1,48 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+      {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="container mt-4">
+        <h2>Your Orders</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date & Time</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                      <th>Address</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.product.name }}</td>
+                         <td>${{ order.price }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>{{ order.get_status_display }}</td>
+                    <td>  {% if order.status == 'pending' %}
+                                <form method="post" action="{% url 'cancel_order' order.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Cancel Order</button>
+                                </form>
+                            {% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

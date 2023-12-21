@@ -1,0 +1,92 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+  <style>
+
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .signup-container {
+      margin-top: 50px;
+    }
+
+    .signup-card {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .signup-header {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .form-group button {
+      background-color: #ff9900;
+      color: #fff;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+
+  <div class="container signup-container">
+    <div class="signup-card">
+      <h1 class="signup-header">Add Product</h1>
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="form-group">
+          <label for="id_name">Product Name:</label>
+    <input type="text" name="name" maxlength="255" required id="id_name">
+        </div>
+           <div class="form-group">
+         <label for="id_description">Description:</label>
+               <textarea name="description" cols="40" rows="10" required id="id_description"></textarea>
+        </div>
+           <div class="form-group">
+          <label for="id_price">Price:</label>
+             <input type="number" name="price" step="0.01" required id="id_price">
+        </div>
+        <div class="form-group">
+         <label for="id_image">Image:</label>
+    <input type="file" name="image" accept="image/*" id="id_image">
+        </div>
+
+
+
+
+        <div class="form-group">
+          <button type="submit" style="width: 100%;background-color: #454679">Add Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<!-- update_order_status.html -->
+{% extends 'navbar.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Update Order Status</h2>
+        <form method="post" action="{% url 'update_order_status' order_id %}">
+            {% csrf_token %}
+            <select name="new_status" class="form-select">
+                <option value="pending">Pending</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+{% endblock %}
