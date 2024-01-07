@@ -81,14 +81,39 @@
                                 <br>
                              <br>
 
-                                 <button style="color: white;
-        background-color: #454679 !important;
-        width: 100%;
-        height: 60px;
-        border-radius: 20px;
-border: none" class="btn-chk" type="submit" >Checkout
-                        </button>
+                               <button style="color: white;
+    background-color: #454679 !important;
+    width: 100%;
+    height: 60px;
+    border-radius: 20px;
+    border: none"
+    class="btn-chk"
+    data-bs-toggle="modal"
+    data-bs-target="#paymentModal">Checkout
+</button>
+ <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">Payment Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+    <p>Amount to be paid: ${{ total_price|floatformat:2 }}</p>
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Enter card number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cardName" class="form-label">Name on Card</label>
+                        <input type="text" class="form-control" id="cardName" name="cardName" placeholder="Enter name on card" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Pay</button>
 
+            </div>
+        </div>
+    </div>
+</div>
 
     </form>
                             {% else %}
@@ -113,6 +138,7 @@ border: none" class="btn-chk" onclick="window.location.href = '{% url 'customer_
     <br>
     <h4 style="padding-left: 60px">Cart is empty.</h4>
     {% endif %}
+
 {% endblock %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
